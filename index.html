@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AX WAVE wildmental 소개</title>
+<meta name="description" content="AX WAVE 2기 강사 wildmental 박병준 소개, 뉴스레터 AI Skills for Everyone, 수업용 Claude 스킬 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: one dark column for the projector — intro image first, then newsletter, then skills; single deliberate dark theme taken from the intro image's night-blue */
+:root {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --surface: #121b2e;
+  --line: #24324d;
+  --fg: #e8eef8;
+  --muted: #9fb0c9;
+  --accent: #4fb3ff;
+  --accent-ink: #06121f;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.05vw + 8px, 20px);
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+img { max-width: 100%; height: auto; display: block; }
+.wrap {
+  max-width: calc(924px + 2 * max(16px, env(safe-area-inset-left, 0px)));
+  margin: 0 auto;
+  padding-block: clamp(32px, 5vw, 72px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(64px, 9vw, 112px);
+}
+.wrap > * { min-width: 0; }
+.eyebrow {
+  font-size: 0.82em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.3; }
+h1 { font-size: clamp(30px, 3.6vw + 10px, 56px); font-weight: 700; }
+h2 { font-size: clamp(24px, 2.2vw + 10px, 40px); font-weight: 700; }
+h3 { font-size: 1.05em; font-weight: 700; }
+p { margin: 0; }
+.lead { color: var(--muted); max-width: 40em; margin-top: 16px; }
+
+/* 1. 강사 소개 */
+.intro { display: grid; gap: 28px; }
+.intro figure { margin: 0; justify-self: center; width: 100%; max-width: 924px; }
+.intro figure img { width: 100%; border-radius: 18px; }
+
+/* 2. 뉴스레터 */
+.newsletter { display: grid; gap: 28px; }
+.nl-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 3vw, 36px); align-items: center; }
+.nl-logo { width: clamp(120px, 14vw, 168px); aspect-ratio: 1; background: #f7f4ee; border-radius: 20px; padding: 12px; }
+.nl-logo img { width: 100%; height: 100%; object-fit: contain; }
+.nl-title { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; }
+.nl-title .cta { flex: none; }
+@media (max-width: 560px) { .nl-head { grid-template-columns: minmax(0, 1fr); } }
+.issues { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.issues li { border-bottom: 1px solid var(--line); }
+.issues a {
+  display: grid;
+  grid-template-columns: 7.5em 1fr;
+  gap: 16px;
+  padding: 16px 4px;
+  color: var(--fg);
+  text-decoration: none;
+}
+.issues a:hover .t { color: var(--accent); text-decoration: underline; }
+.issues time { font-family: var(--font-mono); font-size: 0.85em; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 2px; }
+.issues .t { min-width: 0; }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 12px 22px;
+}
+.cta:hover { filter: brightness(1.08); }
+.cta.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+
+/* 3. 스킬 */
+.skills { display: grid; gap: 28px; }
+.skill-groups { display: grid; gap: 32px; }
+.group { display: grid; gap: 14px; }
+.group-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.group-head h3 { font-size: 1em; }
+.group-head p { color: var(--muted); font-size: 0.88em; }
+.skill-grid { display: grid; gap: 16px; }
+.skill-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.skill-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 760px) { .skill-grid.three, .skill-grid.two { grid-template-columns: minmax(0, 1fr); } }
+.skill {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.skill code { font-family: var(--font-mono); color: var(--accent); font-size: 1.05em; }
+.skill .when { color: var(--fg); }
+.skill .say { color: var(--muted); font-size: 0.92em; margin-top: auto; padding-top: 4px; }
+.skill .meta { font-family: var(--font-mono); font-size: 0.78em; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.rule {
+  border-left: 3px solid var(--accent);
+  padding: 4px 0 4px 16px;
+  color: var(--fg);
+}
+.install { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 14px; min-width: 0; }
+.install-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.install pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--font-body); font-size: 0.95em; line-height: 1.75; }
+.copy { font: inherit; font-size: 0.85em; font-weight: 700; color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 8px; padding: 6px 16px; cursor: pointer; }
+.copy:hover { background: var(--accent); color: var(--accent-ink); }
+pre {
+  margin: 0;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  line-height: 1.7;
+}
+.links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+
+@media (max-width: 560px) {
+  .issues a { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <section class="intro" aria-labelledby="intro-h">
+    <div>
+      <p class="eyebrow">AX WAVE 2기 · 강사 소개</p>
+      <h1 id="intro-h">반갑습니다, wildmental 박병준입니다</h1>
+    </div>
+    <figure>
+      <img src="assets/lecturer-intro.png" width="924" height="881" alt="박병준 강사 소개. 실무 프로젝트로 검증된 서비스 기획·개발 전문가. 주요 경력: 현재 프리랜서 IT 교육 컨설턴트, 이전 카카오 키즈노트 백엔드 엔지니어, 이전 코인빗 백엔드 엔지니어. 기업 현직자 교육: UBION, 하나금융그룹, KT, 기아자동차. 학생 및 임직원 교육: 클라우드 풀스택 과정, 동국대·건국대 특강, 글로벌 SW 융합 교육, 임베디드 SW 과정.">
+    </figure>
+  </section>
+
+  <section class="newsletter" aria-labelledby="nl-h">
+    <div class="nl-head">
+      <div class="nl-logo"><img src="assets/ai-skills-for-everyone-logo.png" width="480" height="480" alt="AI Skills for Everyone 로고"></div>
+      <div>
+      <div class="nl-title">
+        <div>
+          <p class="eyebrow">LinkedIn 뉴스레터</p>
+          <h2 id="nl-h">AI Skills for Everyone</h2>
+        </div>
+        <a class="cta" href="https://www.linkedin.com/newsletters/ai-skills-for-everyone-7481019879278411776/" target="_blank" rel="noopener">뉴스레터 구독하기 ↗</a>
+      </div>
+      <p class="lead">누구나 AI를 쉽게 쓰도록 돕는 교육 컨설팅 활동, 그 과정의 후기와 기술 논평을 연재합니다. AI에게 일을 맡기면서도 판단의 운전대는 사람이 쥐는 법을 주로 다룹니다.</p>
+      </div>
+    </div>
+    <ul class="issues">
+      <li><a href="https://kr.linkedin.com/pulse/%EC%96%B4%EB%94%94%EB%A1%9C-%ED%8A%88%EC%A7%80-%EB%AA%A8%EB%A5%B4%EB%8A%94-ai-%EC%9E%90%EC%9C%A8%EC%84%B1-%EC%9B%90%ED%95%98%EB%8A%94-%EB%B0%A9%ED%96%A5%EC%9C%BC%EB%A1%9C%EB%A7%8C-%EA%B7%B9%EB%8C%80%ED%99%94%ED%95%98%EB%A0%A4%EB%A9%B4-byungjun-park-rbnac" target="_blank" rel="noopener"><time datetime="2026-11-06">2026.11.06</time><span class="t">어디로 튈지 모르는 AI 자율성, 원하는 방향으로만 극대화하려면?</span></a></li>
+      <li><a href="https://kr.linkedin.com/pulse/ai-%EC%8B%9C%EB%8C%80-%EC%9D%B8%EA%B0%84%EC%9D%98-%EC%9E%91%EC%97%85-%EC%98%A4%EB%84%88%EC%8B%AD%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%A7%80%ED%82%AC-%EC%88%98-%EC%9E%88%EC%9D%84%EA%B9%8C-byungjun-park-xnqoc" target="_blank" rel="noopener"><time datetime="2026-10-22">2026.10.22</time><span class="t">AI 시대, 인간의 작업 오너십은 무엇이고 어떻게 지킬 수 있을까?</span></a></li>
+      <li><a href="https://kr.linkedin.com/pulse/ai%EC%97%90%EA%B2%8C-%EB%82%B4-%EC%82%AC%EA%B3%A0%EC%9D%98-%EC%9A%B4%EC%A0%84%EB%8C%80%EB%A5%BC-%EB%84%98%EA%B8%B0%EC%A7%80-%EC%95%8A%EB%8A%94-%EB%B2%95-byungjun-park-ux4xc" target="_blank" rel="noopener"><time datetime="2026-08-15">2026.08.15</time><span class="t">AI에게 내 사고의 운전대를 넘기지 않는 법</span></a></li>
+      <li><a href="https://kr.linkedin.com/pulse/ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8%EC%97%90-%EC%9E%90%EC%8B%A0%EC%9E%88%EA%B2%8C-%EB%AA%85%EB%A0%B9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EA%B8%B0%EB%B3%B8%EA%B8%B0-byungjun-park-tsczc" target="_blank" rel="noopener"><time datetime="2026-07-26">2026.07.26</time><span class="t">AI 에이전트에 자신있게 명령하기 위한 기본기</span></a></li>
+      <li><a href="https://kr.linkedin.com/pulse/ai%EC%97%90%EA%B2%8C-%EB%8B%B9%EC%8B%A0%EA%B3%BC-%ED%95%A8%EA%BB%98%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EC%82%AC%ED%9A%8C%ED%99%94%EB%A5%BC-%EC%8B%9C%EC%BC%9C%EB%B3%B4%EC%84%B8%EC%9A%94-byungjun-park-wkobc" target="_blank" rel="noopener"><time datetime="2026-07-09">2026.07.09</time><span class="t">AI에게 당신과 함께하기 위한 ‘사회화’를 시켜보세요</span></a></li>
+    </ul>
+  </section>
+
+  <section class="skills" aria-labelledby="sk-h">
+    <div>
+      <p class="eyebrow">GitHub · wild-ax-class-skills</p>
+      <h2 id="sk-h">수업에서 쓰는 Claude 스킬 5종</h2>
+      <p class="lead">Claude에게 하고 싶은 말만 하면, 스킬이 내용을 정리해 Wild 선생님께 보냅니다.</p>
+    </div>
+
+    <div class="skill-groups">
+      <div class="group">
+        <div class="group-head">
+          <h3>물어보고 이야기하기</h3>
+          <p>답을 찾으면 ask, 생각을 나누면 discuss, 직접 만나려면 meet</p>
+        </div>
+        <div class="skill-grid three">
+          <article class="skill">
+            <h3><code>/ask-wild</code></h3>
+            <p class="when">공부하다 막혔을 때 질문</p>
+            <p class="say">“Wild 선생님께 질문 보내줘”</p>
+          </article>
+          <article class="skill">
+            <h3><code>/discuss-wild</code></h3>
+            <p class="when">수업에서 다룰 주제 제안</p>
+            <p class="say">“이 주제 수업에서 토론하고 싶어”</p>
+          </article>
+          <article class="skill">
+            <h3><code>/meet-wild</code></h3>
+            <p class="when">20분 면담 요청</p>
+            <p class="meta">수업일 12:00 · 12:30 · 18:00</p>
+            <p class="say">“Wild 선생님이랑 면담 잡아줘”</p>
+          </article>
+        </div>
+      </div>
+      <div class="group">
+        <div class="group-head">
+          <h3>작업물 보내기</h3>
+          <p>작업 중이면 review, 최종본이면 submit</p>
+        </div>
+        <div class="skill-grid two">
+          <article class="skill">
+            <h3><code>/review-wild</code></h3>
+            <p class="when">작업 중인 초안에 피드백 요청</p>
+            <p class="say">“이 초안 피드백 받고 싶어”</p>
+          </article>
+          <article class="skill">
+            <h3><code>/submit-wild</code></h3>
+            <p class="when">과제 최종본 제출</p>
+            <p class="say">“과제 제출해줘”</p>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <p class="rule">보내기 전에 항상 미리보기를 보여 주고, 여러분이 승인해야만 보냅니다.</p>
+
+    <div class="install">
+      <div class="install-head">
+        <h3>설치: Claude에 이렇게 요청하세요</h3>
+        <button type="button" id="copy-prompt" class="copy">복사</button>
+      </div>
+      <pre id="install-prompt">https://github.com/wild-mental/wild-ax-class-skills
+현재 환경에 위 저장소에서 제공하는 AI Native형 수업도구 스킬들을 사용자 단위로 설치해줘.</pre>
+    </div>
+
+    <div class="links">
+      <a class="cta" href="https://github.com/wild-mental/wild-ax-class-skills" target="_blank" rel="noopener">스킬 저장소 열기 ↗</a>
+      <a class="cta ghost" href="https://github.com/wild-mental/wild-ax-class-skills/blob/main/docs/GUIDE.md" target="_blank" rel="noopener">학생 가이드 ↗</a>
+    </div>
+  </section>
+
+</main>
+<script>
+document.getElementById('copy-prompt').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('install-prompt').textContent;
+  function done() { btn.textContent = '복사됨'; setTimeout(function () { btn.textContent = '복사'; }, 1600); }
+  function fallback() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('install-prompt'));
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    btn.textContent = '선택됨 · Cmd/Ctrl+C';
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+});
+</script>
+</body>
+</html>
